@@ -1,0 +1,5 @@
+body{
+    background:hsl(15, 62%, 78%) url("stride.jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
+}
