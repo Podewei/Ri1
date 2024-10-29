@@ -48,7 +48,7 @@ function enter_information(){
     }
 }
 function start(){
-    if(start_enter){
+    if(window.start_enter === true){
     const namer = document.getElementById("form_start");
     namer.id = "user_name";
     namer.innerText = window.user_name;
@@ -57,8 +57,8 @@ function start(){
     if(!localStorage.getItem("user_level")){
         localStorage.setItem("user_level","一转");
     }
-    window.user_level = "一转";
-    init_start.innerText = "修为: "+window.user_level;
+    window.user_level = localStorage.getItem("user_level");
+    init_start.innerText = "修为: " + window.user_level;
     const page = document.getElementById("page");
     page.appendChild(window.very_start_clone);
     }
