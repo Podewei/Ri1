@@ -43,12 +43,13 @@ function enter_information(){
             init_form.appendChild(newform);
             letin.addEventListener("click",function(){
                 localStorage.setItem("user_name",nameinput.value);
+                window.user_name = localStorage.getItem("user_name");
                 init_form.remove();
             })
     }
 }
 function start(){
-    if(window.start_enter === true){
+    if(window.start_enter){
     const namer = document.getElementById("form_start");
     namer.id = "user_name";
     namer.innerText = window.user_name;
