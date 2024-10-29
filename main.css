@@ -37,16 +37,26 @@ h1{
     justify-content:center;
     align-items:center;
 }
-#form_start{
+#form_start,#user_name{
     background:linear-gradient(140deg,hsl(47, 60%, 20%),hsla(49, 77%, 15%,0.5));
 }
-#init_start{
+#init_start,#user_level{
     background:linear-gradient(220deg,hsl(187, 87%, 66%),hsla(238, 61%, 11%,0.5));
 }
 #form_start:hover,#init_start:hover{
     background:linear-gradient(220deg,hsl(188, 24%, 7%),hsla(238, 61%, 11%,0.5));
 }
+#init_information{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
 #init_information label{
     display:block;
     text-align:center;
+}
+#init_information [type="button"]{
+    margin-left:3vw;
+    justify-content:center;
+    border-radius:10px;
 }
