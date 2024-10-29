@@ -1,5 +1,52 @@
-body{
-    background:hsl(15, 62%, 78%) url("stride.jpg");
-    background-repeat:no-repeat;
-    background-size:cover;
+html{
+        background-image:linear-gradient(0deg, hsla(345, 27%, 94%, 0.8), hsla(28, 96%, 79%, 0.88)),url("stride.jpg");
+        background-repeat: no-repeat;
+        background-size:cover; /* 假设线性渐变自动适应尺寸 */
+        background-position:center center,center bottom 22%;
+}
+.page{
+    width:100%;
+    height:100vh;
+}
+h1{
+    text-align:center;
+    color:#552500;
+}
+.head_ex{
+    text-align:right;
+}
+.intro{
+    color:#444444;
+}
+.container{
+    width:80vw;
+    height:auto;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,32%);
+    grid-template-rows:repeat(2,15vh);
+    grid-gap:1vh 2%;
+}
+.init_button{
+    width:20vw;
+    margin-top:3vh;
+    margin:5px auto;
+    height:50px;
+    border-radius:40px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+#form_start{
+    background:linear-gradient(140deg,hsl(47, 60%, 20%),hsla(49, 77%, 15%,0.5));
+}
+#init_start{
+    background:linear-gradient(220deg,hsl(187, 87%, 66%),hsla(238, 61%, 11%,0.5));
+}
+#form_start:hover,#init_start:hover{
+    background:linear-gradient(220deg,hsl(188, 24%, 7%),hsla(238, 61%, 11%,0.5));
+}
+#init_information label{
+    display:block;
+    text-align:center;
 }
