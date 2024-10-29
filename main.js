@@ -43,7 +43,7 @@ function enter_information(){
             letin.addEventListener("click",function(){
                 window.start_enter = true;
                 localStorage.setItem("user_name",nameinput.value);
-                window.user_name = localStorage.getItem("user_name");
+                window.user_name = nameinput.value;
                 init_form.remove();
             })
     }
