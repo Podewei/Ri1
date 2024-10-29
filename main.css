@@ -43,9 +43,6 @@ h1{
 #init_start,#user_level{
     background:linear-gradient(220deg,hsl(187, 87%, 66%),hsla(238, 61%, 11%,0.5));
 }
-#form_start:hover,#init_start:hover{
-    background:linear-gradient(220deg,hsl(188, 24%, 7%),hsla(238, 61%, 11%,0.5));
-}
 #init_information{
     display:flex;
     flex-wrap:wrap;
@@ -59,4 +56,26 @@ h1{
     margin-left:3vw;
     justify-content:center;
     border-radius:10px;
+}
+.container{
+    margin-top:10vh;
+    display:grid;
+    grid-template-columns:80%;
+    grid-template-rows:repeat(3,8vh);
+    justify-items:center;
+    align-items:center;
+    align-content:center;
+    justify-content:center;
+}
+.init_button:hover{
+    background:linear-gradient(220deg,hsla(195, 100%, 1%, 0.9),hsla(315, 29%, 3%, 0.9)) !important;
+}
+#进入一转历练{
+    background:linear-gradient(120deg,hsla(120, 30%, 70%,0.5),hsla(0, 36%, 45%, 0.1));
+}
+#进入二转历练{
+    background:linear-gradient(120deg,hsla(0, 60%, 50%,0.6),hsla(0, 36%, 45%, 0.1));
+}
+#进入三转历练{
+    background:linear-gradient(120deg,hsla(0, 0%, 70%,0.7),hsla(0, 36%, 45%, 0.1));;
 }
