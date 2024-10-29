@@ -79,3 +79,7 @@ h1{
 #进入三转历练{
     background:linear-gradient(120deg,hsla(0, 0%, 70%,0.7),hsla(0, 36%, 45%, 0.1));;
 }
+#temporary_one_init{
+    display:block;
+    margin-left:40vw;
+}
