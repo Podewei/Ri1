@@ -24,7 +24,6 @@ function enter_information(){
     window.init_form_counter+=1;
     if(window.init_form_counter==1){
             const init_form = document.getElementById("init_form")
-            window.start_enter = true;
             const newform = document.createElement("form");
             newform.id = "init_information";
             const namelabel = document.createElement('label');
@@ -42,6 +41,7 @@ function enter_information(){
             newform.appendChild(letin);
             init_form.appendChild(newform);
             letin.addEventListener("click",function(){
+                window.start_enter = true;
                 localStorage.setItem("user_name",nameinput.value);
                 window.user_name = localStorage.getItem("user_name");
                 init_form.remove();
