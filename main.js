@@ -6,6 +6,9 @@ window.addEventListener("load",function(){
         user_name_display.innerText = user_name;
         const form = document.getElementById("init_form");
         form.remove();
+    } else {
+        const deleter = document.getElementById("first_container");
+        deleter.remove();
     }
     if(localStorage.getItem("user_level")){
         const level_display = document.getElementById("init_start");
@@ -43,6 +46,9 @@ function enter_information(){
     }
 }
 function start(){
+    const namer = document.getElementById("form_start");
+    form_start.id = "user_name";
+    form_start.innerText = window.user_name;
     const init_start = document.getElementById("init_start");
     init_start.id = "user_level";
     if(!localStorage.getItem("user_level")){
