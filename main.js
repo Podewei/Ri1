@@ -48,9 +48,10 @@ function enter_information(){
     }
 }
 function start(){
+    if(start_enter){
     const namer = document.getElementById("form_start");
-    form_start.id = "user_name";
-    form_start.innerText = window.user_name;
+    namer.id = "user_name";
+    namer.innerText = window.user_name;
     const init_start = document.getElementById("init_start");
     init_start.id = "user_level";
     if(!localStorage.getItem("user_level")){
@@ -60,4 +61,6 @@ function start(){
     init_start.innerText = "修为: "+window.user_level;
     const page = document.getElementById("page");
     page.appendChild(window.very_start_clone);
+    }
+    start_enter = false;
 }
