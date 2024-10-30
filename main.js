@@ -66,5 +66,5 @@ function start(){
     start_enter = false;
 }
 function enter_problems(){
-    localStorage.clear();
+    window.location.href="questions.html";
 }
