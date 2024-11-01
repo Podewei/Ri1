@@ -1,5 +1,6 @@
 body{
-    background:linear-gradient(250deg,hsla(113, 74%, 85%, 0.8),hsla(292, 66%, 79%, 0.8));
+    height:100vh;
+    background:linear-gradient(220deg,hsla(248, 55%, 55%, 0.8),hsla(40, 79%, 54%, 0.8));
 }
 h1{
     font-size: 32px;
@@ -11,12 +12,14 @@ h1{
 }
 #question_container{
    width:80vw;
+   margin:2vh auto;
    background-color:rgb(143, 201, 225);
    box-shadow:5px 5px 15px rgba(0, 0, 0, 0.3);
    border:1.5px solid black;
    border-radius:2px;
 }
 #challenge_taker{
+    text-align:center;
     min-width:50px;
     width:15vw;
     max-width:100px;
@@ -26,7 +29,7 @@ h1{
     color:hsl(0,0,12%);
 }
 #challenge_taker:hover{
-    background:hsl(0,0,12%);
+    background:hsl(0,0,12%) !important;
 }
 #question,#optionA,#optionB,#optionC,#optionD{
     width:100%;
@@ -44,4 +47,31 @@ h1{
     height:20px;
     background-color:hsl(0,0,20%);
     color:rgba(167, 50, 50,0.75);
+}
+input{
+    width:20% !important;
+}
+label{
+    position:relative;
+    top:-4px;
+}
+#confirm{
+    display:block;
+    margin:auto;
+    border-radius:5px;
+}
+#next{
+    width:20vw;
+    height:5vh;
+    background-color:rgb(222, 114, 56);
+    border:2px solid black;
+    border-radius:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    float:right;
+    margin-right:10vw;
+}
+#next:hover{
+    background-color:hsl(0,0,12%) !important;
 }

@@ -1,57 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send Request Example</title>
-    <link rel="stylesheet" href="question.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Challenges_for_Big_Love</title>
+        <link rel="icon" href="stride.jpg" type="image/jpg"> <!-- 添加这一行 -->
+        <link rel="stylesheet" href="question.css">
+    </head>    
 <body id="body">
     <h1>度难关，成英杰</h1>
     <div id='challenge_taker' onclick="sendRequest()">Take on a challenge</div>
-    <form>
+    <form id="form">
     <div id="question_container">
     <div id="question"></div>
     <hr>
     <div>
-        <label for="optionA" id="optionA-text"><input type="radio" name='Question' value="A" id="optionA"></label>
+        <input type="radio" name='Question' value="A" id="optionA"><label for="optionA" id="optionA-text"></label>
     </div>
     <div>
-        <label for="optionB" id="optionB-text"><input type="radio" name='Question' value="B" id="optionB"></label>
+        <input type="radio" name='Question' value="B" id="optionB"><label for="optionB" id="optionB-text"></label>
     </div>
     <div>
-        <label for='optionC' id="optionC-text"><input type="radio" name='Question' value='C' id="optionC"></label>
+        <input type="radio" name='Question' value='C' id="optionC"><label for='optionC' id="optionC-text"></label>
     </div>
     <div>
-        <label for='optionD' id="optionD-text"><input type="radio" name='Question' value='D' id="optionD"></label>
+        <input type="radio" name='Question' value='D' id="optionD"><label for='optionD' id="optionD-text"></label>
     </div>
     </div>
-    <button style="border-radius:5px;" onclick="confirm();">Confirm</button>
+    <button id="confirm" type='submit' onclick="handleconfirm(event);">Confirm</button>
     </form>
+    <div id="next" onclick="next();">Next</div>
     <script>
-       function confirm(){
-           const formData = new FormData(form);
-           const selected_value = formData.get('Question');
-           const body = document.getElementById("body");
-           if(!selected_value){
-               if(selected_value===window.answer){
-                   const correct = document.createElement('div');
-                   correct.id = 'correct';
-                   correct.innerText = 'Correct!';
-                   body.appendChild(correct);
-               } else {
-                   const mistake = document.createElement('div');
-                   mistake.id='mistake';
-                   mistake.innerText = 'False!';
-                   body.appendChild(mistake);
-               }
-           }else{
-               const select_first = document.createElement('div');
-               select_first.id = "select_first";
-               select_first.innerText = 'Please choose one first!';
-               body.appendChild(select_first);
-               setTimeout(function(){select_first.remove();},2000);
+       function handleconfirm(event) {
+       event.preventDefault();  // 阻止表单提交
+       const form = document.getElementById('form');
+       const formData = new FormData(form);
+       const selected_value = formData.get('Question');
+       const body = document.getElementById("body");
+       
+       // 禁用所有单选按钮
+       const radioButtons = form.querySelectorAll('input[type="radio"]');
+       radioButtons.forEach((radio) => {
+           radio.disabled = true;  // 设置为不可用
+       });
+
+       if (selected_value) {
+           if (selected_value === window.answer) {
+               const correct = document.createElement('div');
+               correct.id = 'correct';
+               correct.innerText = 'Correct!';
+               body.appendChild(correct);
+               setTimeout(function() { correct.remove(); }, 1000);
+           } else {
+               const mistake = document.createElement('div');
+               mistake.id = 'mistake';
+               mistake.innerText = 'False!';
+               body.appendChild(mistake);
+               setTimeout(function() { mistake.remove(); }, 1000);
            }
+       } else {
+           const select_first = document.createElement('div');
+           select_first.id = "select_first";
+           select_first.innerText = 'Please choose one first!';
+           body.appendChild(select_first);
+           setTimeout(function() { select_first.remove(); }, 1000);
+       }
        }
        function sendRequest() {
            fetch('http://127.0.0.1:3000/', {
@@ -59,7 +72,7 @@
                headers: {
                    'Content-Type': 'application/json',
                },
-               body: JSON.stringify({ message: 'request 1 question' }),
+               body: JSON.stringify({ message: 'request 1' }),
            })
            .then(response => {
                if (!response.ok) {
@@ -68,18 +81,23 @@
                return response.json();
            })
            .then(data => {
-               console.log('Success:', data);
-               document.getElementById('question').innerText = data.question;
-               document.getElementById('optionA-text').innerText = data.optionA;
-               document.getElementById('optionB-text').innerText = data.optionB;
-               document.getElementById('optionC-text').innerText = data.optionC;
-               document.getElementById('optionD-text').innerText = data.optionD;
+            console.log('Success:', data);
+            const questionObj = data.questions[0]; 
+            document.getElementById('question').innerText = questionObj.question; // 显示问题
+            document.getElementById('optionA-text').innerText = questionObj.optionA; // 显示选项 A
+            document.getElementById('optionB-text').innerText = questionObj.optionB; // 显示选项 B
+            document.getElementById('optionC-text').innerText = questionObj.optionC; // 显示选项 C
+            document.getElementById('optionD-text').innerText = questionObj.optionD; // 显示选项 D
+            window.answer = questionObj.answer;
            })
            .catch((error) => {
                console.error('Error:', error);
                document.getElementById('responseMessage').innerText = '请求失败: ' + error.message;
            });
        }
+       function next(){
+            location.reload();
+        }
     </script>
 </body>
 </html>
