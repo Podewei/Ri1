@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Request Example</title>
+    <link rel="stylesheet" href="question.css">
+</head>
+<body id="body">
+    <h1>度难关，成英杰</h1>
+    <div id='challenge_taker' onclick="sendRequest()">Take on a challenge</div>
+    <form>
+    <div id="question_container">
+    <div id="question"></div>
+    <hr>
+    <div>
+        <label for="optionA" id="optionA-text"><input type="radio" name='Question' value="A" id="optionA"></label>
+    </div>
+    <div>
+        <label for="optionB" id="optionB-text"><input type="radio" name='Question' value="B" id="optionB"></label>
+    </div>
+    <div>
+        <label for='optionC' id="optionC-text"><input type="radio" name='Question' value='C' id="optionC"></label>
+    </div>
+    <div>
+        <label for='optionD' id="optionD-text"><input type="radio" name='Question' value='D' id="optionD"></label>
+    </div>
+    </div>
+    <button style="border-radius:5px;" onclick="confirm();">Confirm</button>
+    </form>
+    <script>
+       function confirm(){
+           const formData = new FormData(form);
+           const selected_value = formData.get('Question');
+           const body = document.getElementById("body");
+           if(!selected_value){
+               if(selected_value===window.answer){
+                   const correct = document.createElement('div');
+                   correct.id = 'correct';
+                   correct.innerText = 'Correct!';
+                   body.appendChild(correct);
+               } else {
+                   const mistake = document.createElement('div');
+                   mistake.id='mistake';
+                   mistake.innerText = 'False!';
+                   body.appendChild(mistake);
+               }
+           }else{
+               const select_first = document.createElement('div');
+               select_first.id = "select_first";
+               select_first.innerText = 'Please choose one first!';
+               body.appendChild(select_first);
+               setTimeout(function(){select_first.remove();},2000);
+           }
+       }
+       function sendRequest() {
+           fetch('http://127.0.0.1:3000/', {
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json',
+               },
+               body: JSON.stringify({ message: 'request 1 question' }),
+           })
+           .then(response => {
+               if (!response.ok) {
+                   throw new Error('Network response was not ok: ' + response.statusText);
+               }
+               return response.json();
+           })
+           .then(data => {
+               console.log('Success:', data);
+               document.getElementById('question').innerText = data.question;
+               document.getElementById('optionA-text').innerText = data.optionA;
+               document.getElementById('optionB-text').innerText = data.optionB;
+               document.getElementById('optionC-text').innerText = data.optionC;
+               document.getElementById('optionD-text').innerText = data.optionD;
+           })
+           .catch((error) => {
+               console.error('Error:', error);
+               document.getElementById('responseMessage').innerText = '请求失败: ' + error.message;
+           });
+       }
+    </script>
+</body>
+</html>
+
+
