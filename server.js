@@ -88,11 +88,13 @@ const server = http.createServer((req, res) => {
                             res.setHeader('Content-Type', 'application/json');
                             res.write(JSON.stringify({ error: 'Database query error.' }));
                             res.end();
+                            return; // 确保不继续执行
                         } else {
                             res.statusCode = 200;
                             res.setHeader('Content-Type', 'application/json');
                             res.write(JSON.stringify({ questions: results }));
                             res.end();
+                            return; // 确保不继续执行
                         }
                     });
                 } else {
@@ -100,12 +102,14 @@ const server = http.createServer((req, res) => {
                     res.setHeader('Content-Type', 'application/json');
                     res.write(JSON.stringify({ error: 'Invalid message format.' }));
                     res.end();
+                    return; // 确保不继续执行
                 }
             } catch (error) {
                 res.statusCode = 400;
                 res.setHeader('Content-Type', 'application/json');
                 res.write(JSON.stringify({ error: 'Invalid JSON format.' }));
                 res.end();
+                return; // 确保不继续执行
             }
         });
     }
