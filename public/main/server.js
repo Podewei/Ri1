@@ -3,14 +3,13 @@ const mysql = require('mysql');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-
 const connection = mysql.createConnection({
-    host: 'mysql://root:NFZdeIKmrayLyaYvWXxjeKbEPUJiZrZN@junction.proxy.rlwy.net:22575/railway',
+    host: 'junction.proxy.rlwy.net',
     user: 'root',
     password: 'NFZdeIKmrayLyaYvWXxjeKbEPUJiZrZN',
+    port: 22575,
     database: 'railway'
 });
-
 // 创建服务器
 const server = http.createServer((req, res) => {
     const origin = req.headers.origin;
