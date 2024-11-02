@@ -1,12 +1,12 @@
 const http = require('http');
 const mysql = require('mysql2');
-const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+
 const connection = mysql.createConnection({
     host: 'junction.proxy.rlwy.net',
     user: 'root',
-    password: 'NFZdeIKmrayLyaYvWXxjeKbEPUJiZrZN',
+    password: 'your_password',  // 确保替换为实际的密码
     port: 22575,
     database: 'railway',
     authPlugins: {mysql_native_password: true}
@@ -14,10 +14,11 @@ const connection = mysql.createConnection({
 
 // 创建服务器
 const server = http.createServer((req, res) => {
-    const origin = req.headers.origin || '*'; // 添加默认值
+    const origin = req.headers.origin || '*';
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    
     // 处理预检请求
     if (req.method === 'OPTIONS') {
         res.writeHead(204);
@@ -25,33 +26,57 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    // 处理 favicon 请求
-    if (req.url === '/favicon.ico') {
-        const filePath = path.join(__dirname, 'stride.jpg');
-        fs.readFile(filePath, (err, data) => {
-            if (err) {
-                res.writeHead(500);
-                res.end();
-            } else {
-                res.writeHead(200, { 'Content-Type': 'image/jpg' });
-                res.end(data);
-            }
-        });
+    // 设置请求的静态文件路径
+    let filePath = '';
+    const ext = path.extname(req.url) || '.html'; // 默认返回 HTML 文件
+
+    if (req.url === '/') {
+        // 如果请求根目录，返回 index.html
+        filePath = path.join(__dirname, 'index.html');
+    } else if (req.url === '/questions.html') {
+        filePath = path.join(__dirname, 'questions.html');
+    } else if (req.url === '/question.css') {
+        filePath = path.join(__dirname, 'question.css');
+    } else if (req.url === '/stride.jpg') {
+        filePath = path.join(__dirname, 'stride.jpg');
+    } else {
+        // 如果找不到文件，返回 404
+        res.statusCode = 404;
+        res.setHeader('Content-Type', 'application/json');
+        res.write(JSON.stringify({ error: 'Not Found' }));
+        res.end();
         return;
     }
+
+    // 读取静态文件
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            res.statusCode = 500;
+            res.setHeader('Content-Type', 'application/json');
+            res.write(JSON.stringify({ error: 'Internal Server Error' }));
+            res.end();
+        } else {
+            const contentType = {
+                '.html': 'text/html',
+                '.css': 'text/css',
+                '.jpg': 'image/jpeg',
+                '.js': 'application/javascript',
+            }[ext] || 'application/octet-stream';
+            res.statusCode = 200;
+            res.setHeader('Content-Type', contentType);
+            res.end(data);
+        }
+    });
 
     // 处理 POST 请求
     if (req.method === 'POST') {
         let body = '';
-
         req.on('data', chunk => {
             body += chunk.toString();
         });
-
         req.on('end', () => {
             try {
                 const parsedBody = JSON.parse(body);
-
                 if (parsedBody.message.startsWith('request ')) {
                     const n = parseInt(parsedBody.message.split(' ')[1]);
                     connection.query(`SELECT * FROM Question ORDER BY RAND() LIMIT ?`, [n], (err, results) => {
@@ -80,11 +105,6 @@ const server = http.createServer((req, res) => {
                 res.end();
             }
         });
-    } else {
-        res.statusCode = 404;
-        res.setHeader('Content-Type', 'application/json');
-        res.write(JSON.stringify({ error: 'Not Found' }));
-        res.end();
     }
 });
 
@@ -99,4 +119,3 @@ connection.connect(dbErr => {
         console.log(`Server started on port ${process.env.PORT || 3000}...`);
     });
 });
-
