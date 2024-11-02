@@ -2,13 +2,13 @@ const http = require('http');
 const mysql = require('mysql');
 const cors = require('cors');
 const fs = require('fs');
-const path = require('path'); // 导入 path 模块以处理路径
+const path = require('path');
 
 const connection = mysql.createConnection({
-    host: 'localhost',
+    host: 'mysql://root:NFZdeIKmrayLyaYvWXxjeKbEPUJiZrZN@junction.proxy.rlwy.net:22575/railway',
     user: 'root',
-    password: 'Cbzcbzcbz008625@',
-    database: 'challenges_for_Big_love'
+    password: 'NFZdeIKmrayLyaYvWXxjeKbEPUJiZrZN',
+    database: 'railway'
 });
 
 // 创建服务器
@@ -32,7 +32,7 @@ const server = http.createServer((req, res) => {
 
     // 处理 favicon 请求
     if (req.url === '/favicon.ico') {
-        const filePath = path.join(__dirname, 'stride.jpg'); // 确保路径正确
+        const filePath = path.join(__dirname, 'stride.jpg');
         fs.readFile(filePath, (err, data) => {
             if (err) {
                 res.writeHead(500);
@@ -100,7 +100,7 @@ connection.connect(dbErr => {
         return;
     }
     console.log('Connected to MySQL database.');
-    server.listen(3000, () => {
-        console.log('Server started on port 3000...');
+    server.listen(process.env.PORT || 3000, () => {
+        console.log(`Server started on port ${process.env.PORT || 3000}...`);
     });
 });
