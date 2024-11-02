@@ -11,9 +11,10 @@ const connection = mysql.createConnection({
     database: 'railway',
     authPlugins: {mysql_native_password: true}
 });
+
 // 创建服务器
 const server = http.createServer((req, res) => {
-    const origin = req.headers.origin;
+    const origin = req.headers.origin || '*'; // 添加默认值
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -98,3 +99,4 @@ connection.connect(dbErr => {
         console.log(`Server started on port ${process.env.PORT || 3000}...`);
     });
 });
+
