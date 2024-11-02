@@ -13,16 +13,10 @@ const connection = mysql.createConnection({
 
 // 创建服务器
 const server = http.createServer((req, res) => {
-    const allowedOrigins = ['http://localhost:5500', 'http://127.0.0.1:5501'];
     const origin = req.headers.origin;
-
-    if (allowedOrigins.includes(origin)) {
-        res.setHeader('Access-Control-Allow-Origin', origin);
-    }
-
+    res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
     // 处理预检请求
     if (req.method === 'OPTIONS') {
         res.writeHead(204);
