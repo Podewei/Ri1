@@ -1,5 +1,5 @@
 const http = require('http');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
@@ -8,7 +8,8 @@ const connection = mysql.createConnection({
     user: 'root',
     password: 'NFZdeIKmrayLyaYvWXxjeKbEPUJiZrZN',
     port: 22575,
-    database: 'railway'
+    database: 'railway',
+    authPlugins: {mysql_native_password: true}
 });
 // 创建服务器
 const server = http.createServer((req, res) => {
