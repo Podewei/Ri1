@@ -1,4 +1,8 @@
 window.addEventListener("load",function(){
+    if(typeof Number(localStorage.getItem('user_level')) != 'number'){
+        localStorage.setItem('user_level',0);
+   }
+    window.user_level = Number(localStorage.getItem('user_level'));
     if(localStorage.getItem("user_name")){
         const user_name_display = document.getElementById("form_start");
         user_name_display.id = "user_name";
@@ -16,7 +20,13 @@ window.addEventListener("load",function(){
         const level_display = document.getElementById("init_start");
         level_display.id = "user_level";
         window.user_level = localStorage.getItem("user_level");
-        level_display.innerText = "修为: "+user_level;
+        if(user_level>=50){
+        level_display.innerText = "修为: "+"三转";
+        } else if(user_level>=10){
+        level_display.innerText = "修为: "+"二转";
+        } else {
+        level_display.innerText = "修为: "+"一转";
+        }
     }
 }) 
 window.init_form_counter = 0;
@@ -49,6 +59,7 @@ function enter_information(){
     }
 }
 function start(){
+    location.reload();
     if(window.start_enter){
     const namer = document.getElementById("form_start");
     namer.id = "user_name";
@@ -56,10 +67,17 @@ function start(){
     const init_start = document.getElementById("init_start");
     init_start.id = "user_level";
     if(!localStorage.getItem("user_level")){
-        localStorage.setItem("user_level","一转");
+        localStorage.setItem("user_level",0);
     }
-    window.user_level = localStorage.getItem("user_level");
-    init_start.innerText = "修为: " + window.user_level;
+    window.user_level = Number(localStorage.getItem("user_level"));
+    if(window.user_level>=100){
+        window.user_level.conver = "三转";
+    } else if(window.user_level>=10){
+        window.user_level.conver = "二转";
+    } else {
+        window.user_level.conver = "一转";
+    }
+    init_start.innerText = "修为: " + window.user_level.conver;
     const page = document.getElementById("page");
     page.appendChild(window.very_start_clone);
     }
