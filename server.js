@@ -6,7 +6,7 @@ const path = require('path');
 const connection = mysql.createConnection({
     host: 'junction.proxy.rlwy.net',
     user: 'root',
-    password: 'your_password',  // 确保替换为实际的密码
+    password: 'NFZdeIKmrayLyaYvWXxjeKbEPUJiZrZN', 
     port: 22575,
     database: 'railway',
     authPlugins: {mysql_native_password: true}
@@ -31,7 +31,6 @@ const server = http.createServer((req, res) => {
     const ext = path.extname(req.url) || '.html'; // 默认返回 HTML 文件
 
     if (req.url === '/') {
-        // 如果请求根目录，返回 index.html
         filePath = path.join(__dirname, 'index.html');
     } else if (req.url === '/questions.html') {
         filePath = path.join(__dirname, 'questions.html');
@@ -39,6 +38,10 @@ const server = http.createServer((req, res) => {
         filePath = path.join(__dirname, 'question.css');
     } else if (req.url === '/stride.jpg') {
         filePath = path.join(__dirname, 'stride.jpg');
+    } else if (req.url === '/main.js') {  // 添加 main.js
+        filePath = path.join(__dirname, 'main.js');
+    } else if (req.url === '/main.css') { // 添加 main.css
+        filePath = path.join(__dirname, 'main.css');
     } else {
         // 如果找不到文件，返回 404
         res.statusCode = 404;
