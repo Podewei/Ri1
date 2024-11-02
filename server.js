@@ -6,7 +6,7 @@ const path = require('path');
 const connection = mysql.createConnection({
     host: 'junction.proxy.rlwy.net',
     user: 'root',
-    password: 'NFZdeIKmrayLyaYvWXxjeKbEPUJiZrZN', 
+    password: 'NFZdeIKmrayLyaYvWXxjeKbEPUJiZrZN',
     port: 22575,
     database: 'railway',
     authPlugins: {mysql_native_password: true}
@@ -30,7 +30,7 @@ const server = http.createServer((req, res) => {
     let filePath = '';
     const ext = path.extname(req.url) || '.html'; // 默认返回 HTML 文件
 
-    if (req.url === '/') {
+    if (req.url === '/' || req.url === '/index.html') {
         filePath = path.join(__dirname, 'index.html');
     } else if (req.url === '/questions.html') {
         filePath = path.join(__dirname, 'questions.html');
@@ -38,9 +38,9 @@ const server = http.createServer((req, res) => {
         filePath = path.join(__dirname, 'question.css');
     } else if (req.url === '/stride.jpg') {
         filePath = path.join(__dirname, 'stride.jpg');
-    } else if (req.url === '/main.js') {  // 添加 main.js
+    } else if (req.url === '/main.js') {
         filePath = path.join(__dirname, 'main.js');
-    } else if (req.url === '/main.css') { // 添加 main.css
+    } else if (req.url === '/main.css') {
         filePath = path.join(__dirname, 'main.css');
     } else {
         // 如果找不到文件，返回 404
@@ -58,6 +58,7 @@ const server = http.createServer((req, res) => {
             res.setHeader('Content-Type', 'application/json');
             res.write(JSON.stringify({ error: 'Internal Server Error' }));
             res.end();
+            return; // 确保不继续执行
         } else {
             const contentType = {
                 '.html': 'text/html',
@@ -87,29 +88,29 @@ const server = http.createServer((req, res) => {
                             res.statusCode = 500;
                             res.setHeader('Content-Type', 'application/json');
                             res.write(JSON.stringify({ error: 'Database query error.' }));
-                            res.end();
-                            return; // 确保不继续执行
+                            res.end(); // 错误处理，返回 JSON
+                            return; // 确保随后不再执行
                         } else {
                             res.statusCode = 200;
                             res.setHeader('Content-Type', 'application/json');
                             res.write(JSON.stringify({ questions: results }));
-                            res.end();
-                            return; // 确保不继续执行
+                            res.end(); // 返回问题数据，确保局部结束
+                            return; // 确保不会继续执行
                         }
                     });
                 } else {
                     res.statusCode = 400;
                     res.setHeader('Content-Type', 'application/json');
                     res.write(JSON.stringify({ error: 'Invalid message format.' }));
-                    res.end();
-                    return; // 确保不继续执行
+                    res.end(); // 返回错误信息，确保局部结束
+                    return; // 确保不会继续执行
                 }
             } catch (error) {
                 res.statusCode = 400;
                 res.setHeader('Content-Type', 'application/json');
                 res.write(JSON.stringify({ error: 'Invalid JSON format.' }));
-                res.end();
-                return; // 确保不继续执行
+                res.end(); // 返回错误信息，确保局部结束
+                return; // 确保不会继续执行
             }
         });
     }
@@ -126,3 +127,4 @@ connection.connect(dbErr => {
         console.log(`Server started on port ${process.env.PORT || 3000}...`);
     });
 });
+
