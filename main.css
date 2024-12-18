@@ -154,7 +154,8 @@ h1{
   
   #first_container .进入一转历练:hover {
     transition: all 0.1s ease;
-    background-color: rgba(176, 115, 59, 0.5);
+    color: #021217;
+    background-color: rgba(186, 110, 64 , 0.5);
     -webkit-box-shadow: 10px 10px 99px 6px rgb(164, 168, 202);
     -moz-box-shadow: 10px 10px 99px 6px rgb(159, 156, 191);
     box-shadow: 5px 5px 99px 6px hsl(29, 39%, 55%);
@@ -163,6 +164,7 @@ h1{
   
   #first_container .进入二转历练:hover {
     transition: all 0.3s ease;
+    color: #021217;
     background-color: rgba(225, 36 , 0, 0.6);
     -webkit-box-shadow: 10px 10px 99px 6px rgb(225, 36 , 0, 1);
     -moz-box-shadow: 10px 10px 99px 6px rgb(225, 36 , 0, 1);
@@ -172,6 +174,7 @@ h1{
   
   #first_container .进入三转历练:hover {
     transition: all 0.6s ease;
+    color: #021217;
     background-color: rgba(191, 191, 191, 0.8);
     -webkit-box-shadow: 10px 10px 99px 6px rgb(222, 227, 214, 0.5);
     -moz-box-shadow: 10px 10px 99px 6px rgb(235, 240, 225, 0.5);
@@ -181,6 +184,7 @@ h1{
 
   #first_container .进入四转历练:hover {
     transition: all 0.9s ease;
+    color: #021217;
     background-color: rgb(185, 231, 105);
     -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
     -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);

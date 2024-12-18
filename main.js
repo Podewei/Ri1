@@ -91,5 +91,5 @@ function enter_problems(){
     loadingScreen.style.display = 'block'; // 显示加载屏幕
         setTimeout(() => {
             window.location.href = "questions.html"; // 替换为目标页面的 URL
-        }, 2000); // 3000ms = 3s
+        }, 1000); // 3000ms = 3s
 }
