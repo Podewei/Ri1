@@ -1,0 +1,30 @@
+#loading-screencg {
+    display: flex; /* 使容器使用 flexbox 布局 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8); /* 半透明背景 */
+    color: white;
+    display: none; /* 初始隐藏 */
+    z-index: 1000;
+}
+
+.loadercg {
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 8px solid #4cc9f0;
+    margin-left:46.5vw;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite; /* 旋转动画 */
+    margin-top: 40vh; /* 间距 */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

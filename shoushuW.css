@@ -1,0 +1,7 @@
+@font-face {
+    font-family: "汉仪尚巍手书W";
+    src: url("汉仪尚巍手书W.ttf");
+}
+#汉仪W {
+    font-family: 汉仪尚巍手书W;
+}

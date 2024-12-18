@@ -3,28 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Big-love</title>
+    <link rel="icon" href="title.jpg" type="image/jpg"> 
+    <link rel="stylesheet" href="opAnimation.css">
     <link rel="stylesheet" href="main.css">
     <script src="main.js" defer></script>
+    <link rel="stylesheet" href="changepage.css">
 </head>
 <body>
+    <div id="loading-screen">
+        <h1 id="汉仪W">这世间,真是英杰无数啊</h1>
+        <div class="loader"></div>
+        <img src="media_result_20241216_06aff96f-8c8b-48b8-a00e-14f8d1a6ce0d (2).png" alt="Loading" class="loader" />
+    <script src="opAnimation.js"></script>
+    </div>
      <div class="page" id="page">
-        <h1>蛊道争锋</h1>
+        <h1 class="head">蛊道争锋</h1>
         <p class="head_ex">------这世间，真是英杰无数啊</p>
         <div class="intro">
-        <p style="text-align:center;white-space:pre-wrap;margin-right:3vw;">
-            落魄谷中寒风吹，春秋蝉鸣少年归。
-            荡魂山处石人泪，定仙游走魔向北。
-            逆流河上万仙退，爱情不敌坚持泪。
-            宿命天成命终败，仙尊悔而我不悔!  </p>
+        <p style="text-align:center;white-space:pre-wrap;margin-right:3vw;font-family: cursive;">
+            落魄谷中寒风吹，春秋蝉鸣少年归。      
+            荡魂山处石人泪，定仙游走魔向北。      
+            逆流河上万仙退，爱情不敌坚持泪。      
+            宿命天成命终败，仙尊悔而我不悔!       </p>
         </div>
         <div id="form_start" class="init_button" onclick="enter_information();">道友名姓</div>
         <div id="init_form"></div>
         <div id="init_start" class="init_button" onclick="start();">开窍</div>
         <div class="container" id="first_container">
-            <div id="进入一转历练" class="init_button" onclick="enter_problems();">一转历练</div>
-            <div id="进入二转历练" class="init_button" onclick="enter_problems();">二转历练</div>
-            <div id="进入三转历练" class="init_button" onclick="enter_problems();">三转历练</div>
+            <div id="进入一转历练" class="进入一转历练" onclick="enter_problems();">一转历练</div>
+            <div id="进入二转历练" class="进入二转历练" onclick="enter_problems();">二转历练</div>
+            <div id="进入三转历练" class="进入三转历练" onclick="enter_problems();">三转历练</div>
+            <div id="进入四转历练" class="进入四转历练" onclick="enter_problems();">四转历练</div>
+        </div>
+        <div id="loading-screencg" class="loading" style="display: none;">
+            <h1>loading...</h1>
+            <div class="loadercg"></div>
         </div>
      </div>
 </body>

@@ -27,6 +27,9 @@ window.addEventListener("load",function(){
         } else {
         level_display.innerText = "修为: "+"一转";
         }
+        /*(user_level>=150){
+           level_display.innerText = "修为: "+"四转";
+        } else if*/
     }
 }) 
 window.init_form_counter = 0;
@@ -84,5 +87,9 @@ function start(){
     start_enter = false;
 }
 function enter_problems(){
-    window.location.href="questions.html";
+    const loadingScreen = document.getElementById('loading-screencg');
+    loadingScreen.style.display = 'block'; // 显示加载屏幕
+        setTimeout(() => {
+            window.location.href = "questions.html"; // 替换为目标页面的 URL
+        }, 2000); // 3000ms = 3s
 }

@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #010911; /* 背景颜色 */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.loader {
+    width: 300px; /* 调整图标大小 */
+    height: 300px; /* 调整图标大小 */
+    animation: slideIn 1s forwards; /* 从屏幕外移动到屏幕中心的动画 */
+}
+
+/* 图标动画定义 */
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%); /* 从上方屏幕外移动 */
+        opacity: 0; /* 初始透明度 */
+    }
+    to {
+        transform: translateY(-50%); /* 移动到最终位置（中心位置） */
+        opacity: 1; /* 最终透明度 */
+    }
+}
+
+.fade-out {
+    animation: fadeOut 2s ease-in-out forwards; /* 渐隐动画 */
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}

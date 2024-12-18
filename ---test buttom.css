@@ -1,0 +1,41 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 让内容垂直居中 */
+    background-color: #f0f0f0; /* 背景颜色 */
+    margin: 0;
+}
+
+.jump-button {
+    padding: 15px 30px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4cc9f0; /* 按钮颜色 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+}
+
+@keyframes jump {
+    0% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-10px); /* 向上跳动 */
+    }
+    50% {
+        transform: translateY(0);
+    }
+    70% {
+        transform: translateY(-5px); /* 小跳 */
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.jump-button:hover {
+    animation: jump 0.5s ease; /* 在悬停时触发跳动动画 */
+}
