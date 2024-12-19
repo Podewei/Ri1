@@ -1,0 +1,402 @@
+/* 整体页面背景设置，使用黄色系渐变背景营造氛围，并添加灵气流动动画效果 */
+body#body {
+    background: linear-gradient(to bottom, #111111, #000000); /* 保留暗色打底，便于突出黄色元素 */
+    color: #FFFF00; /* 主体文字颜色设为黄色 */
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    animation: backgroundFade 15s infinite alternate, auraFlow 20s linear infinite; /* 背景渐变动画与灵气流动动画 */
+}
+
+@keyframes backgroundFade {
+    from {
+        background-position: left top;
+    }
+    to {
+        background-position: right bottom;
+    }
+}
+
+@keyframes auraFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+body#body::before,
+body#body::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    mix-blend-mode: overlay; /* 混合模式，营造更奇幻效果 */
+    pointer-events: none; /* 不影响页面交互 */
+    animation: auraGlow 5s infinite alternate; /* 灵气发光动画 */
+}
+
+body#body::before {
+    background: linear-gradient(90deg, rgba(255, 255, 0, 0.1), rgba(255, 255, 0, 0)); /* 横向灵气流动渐变 */
+}
+
+body#body::after {
+    background: linear-gradient(180deg, rgba(255, 255, 0, 0.1), rgba(255, 255, 0, 0)); /* 纵向灵气流动渐变 */
+}
+
+@keyframes auraGlow {
+    0% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+/* 头部样式，添加黄色发光效果及悬停动画 */
+header {
+    text-align: center;
+    background-color: rgba(34, 34, 34, 0.8);
+    padding: 20px 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease; /* 悬停时的缩放动画过渡效果 */
+    animation: headerPulse 3s infinite ease-in-out; /* 头部呼吸动画 */
+}
+
+header:hover {
+    transform: scale(1.05);
+}
+
+@keyframes headerPulse {
+    0% {
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 5px 15px rgba(255, 255, 0, 0.5); /* 增强发光效果 */
+    }
+    100% {
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    }
+}
+
+header h1 {
+    margin: 0;
+    font-size: 48px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 255, 0, 0.5), 0 0 20px rgba(255, 255, 0, 0.5), 0 0 30px rgba(255, 255, 0, 0.5); /* 黄色多重发光阴影效果 */
+    animation: textGlow 2s infinite alternate; /* 文字发光闪烁动画 */
+}
+
+@keyframes textGlow {
+    from {
+        text-shadow: 0 0 10px rgba(255, 255, 0, 0.5), 0 0 20px rgba(255, 255, 0, 0.5), 0 0 30px rgba(255, 255, 0, 0.5);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(255, 255, 0, 0.8), 0 0 30px rgba(255, 255, 0, 0.8), 0 0 40px rgba(255, 255, 0, 0.8);
+    }
+}
+
+/* 挑战区域整体样式，添加黄色系边框和内阴影及动画效果 */
+#challenge_area {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #333333;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 0, 0.2); /* 黄色系边框 */
+    position: relative;
+    z-index: 1;
+    animation: areaPulse 3s infinite ease-in-out, challengeAura 10s linear infinite; /* 区域呼吸动画与灵气环绕动画 */
+}
+
+@keyframes areaPulse {
+    0% {
+        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.5);
+        border-color: rgba(255, 255, 0, 0.2);
+    }
+    50% {
+        box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.7);
+        border-color: rgba(255, 255, 0, 0.4); /* 增强黄色系边框效果 */
+    }
+    100% {
+        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.5);
+        border-color: rgba(255, 255, 0, 0.2);
+    }
+}
+
+@keyframes challengeAura {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 255, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 255, 0, 0.3); /* 增强灵气环绕效果 */
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 255, 0, 0.1);
+    }
+}
+
+/* 开始问道按钮样式，添加动画效果和更细腻的悬停效果及点击动画，采用黄色系 */
+#challenge_taker {
+    display: block;
+    width: 200px;
+    margin: 0 auto 20px;
+    padding: 15px;
+    background-color: #555555;
+    color: #FFFF00; /* 文字颜色为黄色 */
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    animation: buttonGlow 2s infinite alternate, buttonAura 5s linear infinite; /* 按钮发光动画与灵气环绕动画 */
+}
+
+#challenge_taker:before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(255, 255, 0, 0.2), rgba(255, 255, 0, 0));
+    transform: rotate(45deg);
+    animation: shine 3s infinite linear; /* 按钮上的流光动画 */
+    pointer-events: none;
+}
+
+#challenge_taker:hover {
+    background-color: #777777;
+    transform: scale(1.05);
+}
+
+#challenge_taker:active {
+    transform: scale(0.95);
+}
+
+@keyframes buttonGlow {
+    from {
+        box-shadow: 0 0 5px rgba(255, 255, 0, 0.2);
+    }
+    to {
+        box-shadow: 0 0 10px rgba(255, 255, 0, 0.4);
+    }
+}
+
+@keyframes buttonAura {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 255, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(255, 255, 0, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(255, 255, 0, 0.1);
+    }
+}
+
+@keyframes shine {
+    from {
+        transform: rotate(45deg) translateX(-100%);
+    }
+    to {
+        transform: rotate(45deg) translateX(100%);
+    }
+}
+
+/* 问题容器样式 */
+#question_container {
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease;
+    text-align: center; /* 添加此行，让容器内的内容居中 */
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#question {
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    animation: textShadowPulse 3s infinite ease-in-out;
+    display: inline-block; /* 添加此行，使其可以通过text-align来居中，对于块级元素内的内联元素或行内块元素生效 */
+}
+
+@keyframes textShadowPulse {
+    0% {
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
+    50% {
+        text-shadow: 2px 2px 5px rgba(255, 255, 0, 0.3); /* 加入黄色系阴影效果 */
+    }
+    100% {
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
+}
+
+hr {
+    border-color: #444444;
+    animation: lineGlow 3s infinite alternate;
+}
+
+@keyframes lineGlow {
+    from {
+        border-color: #444444;
+    }
+    to {
+        border-color: rgba(255, 255, 0, 0.3); /* 分割线发光变色为黄色系 */
+    }
+}
+
+/* 选项组通用样式 */
+.option_group {
+    margin-bottom: 10px;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+input[type="radio"]:checked {
+    transform: scale(1.2);
+}
+
+label {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+label:hover {
+    color: #FFFF00; /* 鼠标悬停时文字变黄 */
+}
+
+/* 揭晓天机按钮样式，添加动画效果和悬停效果，黄色系为主 */
+#confirm {
+    display: block;
+    width: 150px;
+    margin: 0 auto;
+    padding: 12px;
+    background-color: #666666;
+    color: #FFFF00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    animation: buttonPulse 2s infinite ease-in-out, confirmAura 5s linear infinite; /* 按钮呼吸动画与灵气环绕动画 */
+}
+
+#confirm:before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(255, 255, 0, 0.2), rgba(255, 255, 0, 0));
+    transform: rotate(45deg);
+    animation: confirmShine 3s infinite linear;
+    pointer-events: none;
+}
+
+#confirm:hover {
+    background-color: #888888;
+    transform: scale(1.05);
+}
+
+@keyframes buttonPulse {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 255, 0, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(255, 255, 0, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(255, 255, 0, 0.2);
+    }
+}
+
+@keyframes confirmAura {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 255, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(255, 255, 0, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(255, 255, 0, 0.1);
+    }
+}
+
+@keyframes confirmShine {
+    from {
+        transform: rotate(45deg) translateX(-100%);
+    }
+    to {
+        transform: rotate(45deg) translateX(100%);
+    }
+}
+
+/* 返回仙途按钮样式，添加动画效果和悬停效果，黄色系体现 */
+#back {
+    display: block;
+    width: 150px;
+    margin: 30px auto;
+    padding: 12px;
+    background-color: #555555;
+    color: #FFFF00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    animation: backButtonGlow 2s infinite alternate, backAura 5s linear infinite; /* 按钮发光动画与灵气环绕动画 */
+}
+
+#back:before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(255, 255, 0, 0.2), rgba(255, 255, 0, 0));
+    transform: rotate(45deg);
+    animation: backShine 3s infinite linear;
+    pointer-events: none;
+}
+
+#back:hover {
+    background-color: #777777;
+    transform: scale(1.05);

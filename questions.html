@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Challenges_for_Big_Love</title>
     <link rel="icon" href="stride.jpg" type="image/jpg"> <!-- favicon -->
-    <link rel="stylesheet" href="question.css"> <!-- 添加 CSS 链接 -->
+    <link rel="stylesheet" href="styles.css"> <!-- 添加 CSS 链接 -->
 </head>
 <body id="body">
+    <div id="loading-screencg" class="loading" style="display: none;">
+        <h1>loading questions</h1>
+        <div class="loadercg"></div>
+    </div>
     <h1>度难关，做英杰</h1>
-    <div id='challenge_taker' onclick="sendRequest()">答题</div>
+    <div id='challenge_taker' onclick="sendRequest();">答题</div>
     <form id="form">
         <div id="question_container">
             <div id="question"></div>
